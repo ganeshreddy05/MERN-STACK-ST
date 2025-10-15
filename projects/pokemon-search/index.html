@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon <search></search></title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+<body>
+    <input id ="q" type = "text" placeholder="ex : pikachu">
+    <button id = "go">search</button>
+    <p id ="info"></p>
+    <div id = "result"></div>
+    
+</body>
+<style>
+          *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .pokemon-card{
+            padding: 15px;
+            border: 2px solid black;
+            border-radius: 20px;
+            width: 300px;
+        }
+
+        .pokemon-specs{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            
+        }
+
+
+  
+</style>
+<script>
+    const q = document.querySelector("#q");
+    const go = document.querySelector("#go");
+    const result = document.getElementById("result");
+    const info = document.getElementById("info")
+
+    go.addEventListener("click", async function(){
+      const name = q.value.trim().toLowerCase();
+      result.innerHTML=" "
+      info.textContent = "searching for pokemon species..."
+      if (!name){
+        info.textContent="type a pokemon name..."
+        return;
+      }
+      try{
+         const respone =  await fetch(`https://pokeapi.co/api/v2/pokemon/${encodeURIComponent(name)}`);
+         const jsonData = await respone.json();
+         console.log(jsonData);
+         console.log(jsonData.name,jsonData.weight,jsonData.weight);
+
+         if(jsonData.name&&jsonData.weight&&jsonData.height){
+          info.textContent=""
+          result.innerHTML=`
+          <article class = "pokemon-card">
+            <h1>${jsonData.name}</h1>
+            <div class = "pokemon-specs">
+              <p>Height :${jsonData.height}</p>
+              <p>Weight :${jsonData.weight}</p>
+              </div>
+              </article>`
+         }}catch{
+
+      }
+      
+        
+     
+      //    info.textContent = "";
+      //   const types = jsonData.types.map(t => t.type.name).join(", ");
+              
+
+      //   result.innerHTML = `
+      //     <div class="card">
+      //       <img src="${jsonData.sprites.front_default}" alt="${jsonData.name}">
+      //       <h2>${jsonData.name}</h2>
+      //       <p><b>Height:</b> ${jsonData.height}</p>
+      //       <p><b>Weight:</b> ${jsonData.weight}</p>
+      //       <p><b>Type:</b> ${types}</p>
+            
+      //     </div>
+      //   `
+        
+        
+      // } catch (error) {
+      //   console.error(error.message);
+      //   info.textContent = "Pokémon not found. Try again!";
+      // }
+     
+    });
+</script>
+</html>

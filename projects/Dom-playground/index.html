@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hOne{
+            color: red;
+            font-family: sans-serif;
+        }
+    </style>
+
+</head>
+<body>
+    <img id ="image" />
+    <h1 id = "hOne">Dom playground</h1>
+    <script>
+        const hOne=document.getElementById("hOne");
+        // console.log("hOne");
+        // const span = document.createElement("span");
+        // span.textContent = " welcome";
+        // hOne.appendChild( span );
+        // hOne.setAttribute("class","hOne")
+        // console.log(hOne.hasAttribute("class"))
+        // hOne.removeAttribute("class");
+        // console.log(hOne.hasAttribute("class"))
+        const image = document.getElementById("image");
+        image.setAttribute("src","https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?cs=srgb&dl=landscape-sky-clouds-259588.jpg&fm=jpg");
+        image.setAttribute("height","200px");
+        image.setAttribute("width","400px");
+        image.setAttribute("alt", "check the url mistake");
+
+        hOne.classList.add("hOne");
+         hOne.classList.remove("hOne");
+         hOne.classList.toggle("hOne");
+         console.log(hOne.classList.contains("hOne"));
+        
+        
+    </script>
+    
+</body>
+</html>

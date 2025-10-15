@@ -1,0 +1,21 @@
+<button id="jokeBtn">Get Joke</button>
+<p id="joke"></p>
+
+<script>
+const jokeBtn = document.getElementById("jokeBtn");
+const jokeP = document.getElementById("joke");
+
+jokeBtn.addEventListener("click", async () => {
+    jokeP.textContent = "Loading..."; // show temporary message
+
+    try {
+        const response = await fetch("https://official-joke-api.appspot.com/random_joke");
+        if (!response.ok) throw new Error("Failed to fetch joke");
+
+        const data = await response.json();
+        jokeP.textContent = `${data.setup} — ${data.punchline}`;
+    } catch (error) {
+        jokeP.textContent = error.message;
+    }
+});
+</script>
